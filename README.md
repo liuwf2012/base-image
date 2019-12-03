@@ -91,10 +91,13 @@ server {
   #access_log  /var/log/nginx/host.access.log  main;
 
   location / {
-      root   /usr/share/nginx/html
+      root   /usr/share/nginx/html;
       index  index.html index.htm;
       # for spa
-      try_files $uri index.html;
+      # try_files $uri index.html;
+      if (-d $request_filename) {
+        rewrite [^/]$ $scheme://$http_host$uri/ permanent;
+      }
   }
 
   #error_page  404              /404.html;
