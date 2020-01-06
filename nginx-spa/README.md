@@ -8,12 +8,16 @@
 ```bash
 # nginx服务的默认用户
 user  nginx;
+
 # 一般为CPU核个数
 worker_processes  1;
+
 # 默认错误日志记录路径和级别
 error_log  /var/log/nginx/error.log warn;
+
 # pid文件记录路径
 pid        /var/run/nginx.pid;
+
 # 事件处理模型优化
 events {
   worker_connections  1024;
@@ -22,8 +26,10 @@ events {
 http {
   # 文件扩展名与文件类型映射表
   include       /etc/nginx/mime.types;
+
   # 默认文件类型
   default_type  application/octet-stream;
+
   # 默认日志格式
   log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
@@ -66,13 +72,13 @@ http {
                     application/vnd.ms-fontobject
                     application/x-font-ttf
                     application/xml
+                    application/javascript
                     font/opentype
                     font/x-woff
                     image/gif
                     image/jpeg image/jpg
                     image/png
                     text/css
-                    text/javascript
                     text/plain
   ;
 
